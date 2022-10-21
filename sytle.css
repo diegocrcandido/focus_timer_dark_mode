@@ -6,32 +6,23 @@
 
 :root{
   font-size: 62.5%;
-  --body-light: hsla(0, 0%, 100%, 1);
-  --body-night:hsla(240, 5%, 7%, 1);
-  --fc-timerLight: hsla(240, 6%, 21%, 1);
-  --fc-timerNight: hsla(0, 0%, 100%, 1);
-  --bg-cardClickLight: hsla(194, 97%, 31%, 1);
-  --fc-cardclikLight: hsla(0, 0%, 100%, 1);
-  --bg-cardClickNight: hsla(195, 74%, 15%, 1);
-  --fc-cardNight: hsla(240, 7%, 78%, 1);
-  --bg-cardNigh: hsla(240, 6%, 17%, 1);
-  --fc-controlsNight: hsla(240, 7%, 78%, 1);
+   /*DISPLAY CLEAR*/
+  --body-clear: hsla(0, 0%, 100%, 1);
+  --fc-timerClear: hsla(240, 6%, 21%, 1);
+  --bg-cardClickClear: hsla(194, 97%, 31%, 1);
+  --fc-cardclikClear: hsla(0, 0%, 100%, 1);
+  /*DISPLAY NIGHT*/
+  --body-dark:hsla(240, 5%, 7%, 1);
+  --fc-timerDark: hsla(0, 0%, 100%, 1);
+  --bg-cardDark: hsla(240, 6%, 17%, 1);
+  --bg-cardClickDark: hsla(195, 74%, 15%, 1);
+  --fc-cardDark: hsla(240, 7%, 78%, 1);
+  --fc-controlsDark: hsla(240, 7%, 78%, 1);
 }
+
 body{
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-
+  color: var(--fc-timerClear);
 }
 
-.page{
-  max-width: clamp(33rem, 30rem + 60vw, 60rem);
-}
-header {
-  width: 4.4rem;
-  height: 4.4rem;
-  align-self: flex-end;
-  justify-self:end ;
-}
-.btnNight {
-  display: none;
-}
