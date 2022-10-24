@@ -23,5 +23,39 @@
 body{
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+
+}
+.page{
+  max-width: 33rem;
+}
+header{
+  margin: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+}
+.icon{
+  background: none;
+}
+button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+main{
+  justify-self: center;
+  align-self: end;
+}
+.timer{
+  font-size: clamp(6.4rem, 4rem + 12vw, 12.6rem);
+  display: flex;
+  margin-bottom: 1.6rem;
+  border-radius: 2.48rem;
+  line-height: 14.8rem;
+}
+
+
+.btnDark{
+  display: none;
 }
 
