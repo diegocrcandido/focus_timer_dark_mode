@@ -12,6 +12,8 @@
   --fc-timerClear: hsla(var(--base-color), 6%, 21%, 1);
   --bg-cardClickClear: hsla(194, 97%, 31%, 1);
   --fc-cardclikClear: hsla(0, 0%, 100%, 1);
+  --bg-cardClear: hsla(var(--base-color), 9%, 89%, 1);
+
   /*DISPLAY NIGHT*/
   --body-dark:hsla(var(--base-color), 5%, 7%, 1);
   --fc-timerDark: hsla(0, 0%, 100%, 1);
@@ -19,6 +21,8 @@
   --bg-cardClickDark: hsla(195, 74%, 15%, 1);
   --fc-cardDark: hsla(var(--base-color), 7%, 78%, 1);
   --fc-controlsDark: hsla(var(--base-color), 7%, 78%, 1);
+
+ 
 }
 
 body{
@@ -89,7 +93,7 @@ span{
   fill: var(--fc-timerClear);
  
 }
-.cards{
+#cards{
   display: grid;
   justify-content: space-between;
   grid-template-areas: 
@@ -100,4 +104,67 @@ span{
 .btnDark{
   display: none;
 }
+input[type='range'] {
+  appearance: none;
+  width: 9rem;
+  height: 0.4rem;
+  background: var(--fc-timerClear);
+  border-radius: 9999px;
+  background-image: linear-gradient(var(--fc-timerClear), var(--fc-timerClear));
+  position: relative;
+  top: -4rem;
+  cursor: pointer;
+}
 
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 50%;
+  background: var(--fc-timerClear);
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+/*NIGHT*/
+.dark {
+  background-color: var(--body-dark);
+}
+
+.dark #timer,
+.dark #controls svg path,
+.dark #icon-mode svg path {
+  color: var(--fc-cardDark);
+  fill: var(--fc-cardDark);
+}
+
+.dark #timer,
+.dark #controls,
+.dark #icon-mode {
+  filter: var(--shadow-darkmode);
+}
+
+.dark #controls .controls-btn:active > svg path {
+  fill: var(--bg-cardClickClear);
+}
+
+.dark .card {
+  filter: var(--shadow-darkmode);
+}
+@media (min-widht: 800px){
+  body {
+    /*padding: 19.6rem, 22.6rem, 18.8rem, 23.3rem;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .page {
+    gap: 8rem;
+    padding: 5rem;
+
+  }
+}
