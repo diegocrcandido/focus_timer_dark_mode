@@ -1,173 +1,443 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-:root{
+:root {
   font-size: 62.5%;
-  --base-color: 240;
-   /*DISPLAY CLEAR*/
-  --body-clear: hsla(0, 0%, 100%, 1);
-  --fc-timerClear: hsla(var(--base-color), 6%, 21%, 1);
-  --bg-cardClickClear: hsla(194, 97%, 31%, 1);
-  --fc-cardclikClear: hsla(0, 0%, 100%, 1);
-  --bg-cardClear: hsla(var(--base-color), 9%, 89%, 1);
-
-  /*DISPLAY NIGHT*/
-  --body-dark:hsla(var(--base-color), 5%, 7%, 1);
-  --fc-timerDark: hsla(0, 0%, 100%, 1);
-  --bg-cardDark: hsla(var(--base-color), 6%, 17%, 1);
-  --bg-cardClickDark: hsla(195, 74%, 15%, 1);
-  --fc-cardDark: hsla(var(--base-color), 7%, 78%, 1);
-  --fc-controlsDark: hsla(var(--base-color), 7%, 78%, 1);
-
- 
+  /*Light Mode*/
+  --bg-clean: hsl(0, 0%, 100%);
+  --bg-cardClear: hsla(194, 97%, 31%, 0.3);
+  --fc-buttonLight: hsl(0, 0%, 0%);
+  --bg-card: hsl(240, 9%, 89%);
+  --fc-line:hsl(240, 7%, 21%);
+  /*Night Mode*/
+  --fc-lineNight: hsl(240, 7%, 78%);
+  --bg-cardNight:hsl(240, 6%, 17%);
+  --bg-clickCardNight:hsl(195, 74%, 15%);
+  --bg-night:hsl(240, 5%, 7%);
+  --fc-lineHover:hsl(195, 80%, 20%);
 }
 
-body{
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  height: 100vh;
+body {
+  background: var(--bg-clean);
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
   }
-.page{
-  padding: 0;
-  max-width: 35rem;
-  height: 100vh;
-  max-height: 70rem;
+
+.page {
+  max-width: 128rem;
+  max-height: 72rem;
+  background: var(--bg-clean);
   display: grid;
-  padding: 1rem;
+  padding-bottom: 1rem;
 }
-header{
+
+.icon-mode {
   display: flex;
   justify-self: end;
-  align-self: center;
-  margin: 0;
-}
-button{
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-button:hover{
-  opacity: 0.5;
-}
-main{
-  max-width: 32.1rem;
-  width: 100%;
-  margin: 0 auto;
-  padding: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10rem;
-}
-#timer{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-span{
-  font-size: clamp(6.3rem, 5rem + 20vw, 12.6rem);
-  color: var(--fc-timerClear);
-}
-#controls {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5rem;
-  margin-top: 1rem;
+  margin-top: 6rem;
+  margin-right: 6rem;
 }
 
-#controls svg {
+.icon-mode button {
+  border-radius: 50%;
+  background: transparent;
+  width: 4.4rem;
+  height: 4.4rem;
+}
+
+.icon-mode button svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-mode button:hover svg path {
+  fill: hsla(240, 6%, 21%, 0.5);
+}
+
+main {
+  width: 82.1rem;
+  margin: 3.3rem auto 6rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.display{
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls svg {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
 }
-.play svg path,
-.stop svg path,
-.addFive svg path,
-.decreaseFive svg path{
-  fill: var(--fc-timerClear);
- 
-}
-#cards{
-  display: grid;
-  justify-content: space-between;
-  grid-template-areas: 
-  "A B"
-  "C D";
-  gap: 1.6rem;
-}
-.btnDark{
+
+.hide {
   display: none;
 }
-input[type='range'] {
-  appearance: none;
+
+.timer {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 12.6rem;
+  line-height: 14.8rem;
+  color: var(--fc-line);
+}
+
+.cards {
+  display: grid;
+  grid-template-areas: "A B"
+  "C D";
+  gap: 3.2rem;
+}
+
+.cards div:nth-child(1) {
+  grid-area: A;
+}
+
+.cards div:nth-child(2) {
+  grid-area: B;
+}
+
+.cards div:nth-child(3) {
+  grid-area: C;
+}
+
+.cards div:nth-child(4) {
+  grid-area: D;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.cards button:hover,
+.icon-mode button:hover {
+  transform: scale(1.1);
+}
+
+.controls button {
+  background: none;
+  width: 4.8rem;
+  height: 4.8rem;
+}
+
+.controls button svg:hover path {
+  fill:hsla(240, 6%, 21%, 0.5);
+}
+
+.controls .btnClicked,
+.icon-mode .btnClicked {
+  background: var(--bg-cardClear);
+  border-radius: 100%;
+  border: 3px solid var(--bg-cardClear);
+}
+
+.controls .btnClicked svg path,
+.icon-mode .btnClicked svg path {
+  fill: var(--bg-clean);
+}
+
+.controls .btnClicked:hover svg path,
+.icon-mode .btnClicked:hover svg path {
+  fill: hsla(240, 6%, 21%, 0.5);
+}
+
+.cards button {
+  margin: 0;
+  padding: 0;
+  width: 13.8rem;
+  height: 15.2rem;
+  border-radius: 2.4rem;
+  position: relative;
+  background: var(--bg-card);
+}
+
+.cards button svg {
+  padding: 4.8rem 4.7rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+}
+
+.cards button:hover svg path {
+  fill: hsla(240, 6%, 21%, 0.5);
+}
+
+.cards .btnClicked {
+  background: var(--bg-cardClear);
+}
+
+.cards .btnClicked svg path {
+  fill:var(--bg-clean);
+}
+
+.cards .btnClicked:hover svg path {
+  fill:hsla(240, 6%, 21%, 0.5);
+}
+
+.volume-control {
+  -webkit-appearance: none;
   width: 9rem;
   height: 0.4rem;
-  background: var(--fc-timerClear);
-  border-radius: 9999px;
-  background-image: linear-gradient(var(--fc-timerClear), var(--fc-timerClear));
-  position: relative;
-  top: -4rem;
+  border-radius: 5px;
+  background-color: var(--fc-line);
+  position: absolute;
+  left: 2.4rem;
+  right: 2.4rem;
+  top: 11.8rem;
+  cursor: grab;
+}
+
+.volume-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--fc-line);
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0 0 5px var(--fc-line);
+}
+
+.cards button:hover .volume-control {
+  background: hsla(240, 6%, 21%, 0.5);
+}
+
+.cards button:hover .volume-control::-webkit-slider-thumb {
+  background: hsla(240, 6%, 21%, 0.5);
+}
+
+.volume-control::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px hsla(240, 6%, 21%, 0.5);
+}
+
+.volume-control:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 7px var(--bg-cardClear);
   cursor: pointer;
 }
 
-input[type='range']::-webkit-slider-thumb {
-  appearance: none;
-  height: 1.6rem;
-  width: 1.6rem;
-  border-radius: 50%;
-  background: var(--fc-timerClear);
+.cards .btnClicked .volume-control {
+  background: hsla(240, 6%, 21%, 1);
 }
 
-input[type='range']::-webkit-slider-runnable-track {
-  appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
-}
-/*NIGHT*/
-.dark {
-  background-color: var(--body-dark);
+.cards .btnClicked:hover .volume-control {
+  background: hsla(240, 6%, 21%, 1);
 }
 
-.dark #timer,
-.dark #controls svg path,
-.dark #icon-mode svg path {
-  color: var(--fc-cardDark);
-  fill: var(--fc-cardDark);
+.cards .btnClicked .volume-control::-webkit-slider-thumb {
+  background: hsla(240, 6%, 21%, 1);
+  box-shadow: 0 0 0 5px var(--fc-line);
 }
 
-.dark #timer,
-.dark #controls,
-.dark #icon-mode {
-  filter: var(--shadow-darkmode);
+.cards .btnClicked:hover .volume-control::-webkit-slider-thumb {
+  background: hsla(240, 6%, 21%, 1);
 }
 
-.dark #controls .controls-btn:active > svg path {
-  fill: var(--bg-cardClickClear);
+.cards .btnClicked .volume-control::-webkit-slider-thumb:hover {
+  background: var(--bg-clean);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
-.dark .card {
-  filter: var(--shadow-darkmode);
+.cards .btnClicked:hover .volume-control:active::-webkit-slider-thumb {
+  background: var(--bg-clean);
+  box-shadow: 0 0 0 7px rgb(255, 255, 255, 0.1);
+  cursor: pointer;
 }
-@media (min-width: 800px){
-  body{
+
+/* DARK MODE */
+.body-dark {
+  background: var(--bg-night);
+}
+
+.page-dark {
+  background: var(--bg-night);
+}
+
+.icon-mode-dark button:hover svg path {
+  fill: var(--fc-lineHover);
+}
+
+.icon-mode-dark .btnClicked {
+  background: var(--bg-clickCardNight);
+  border-radius: 100%;
+  border: 3px solid var(--bg-clickCardNight);
+  box-sizing: border-box;
+}
+
+.icon-mode-dark .btnClicked svg path {
+  fill: var(--bg-clean);
+}
+
+.icon-mode-dark .btnClicked:hover svg path {
+  fill: var(--bg-clean);
+}
+
+.timer-dark {
+  color: var(--bg-clean);
+}
+
+.controls-dark button svg path {
+  fill: var(--fc-lineNight);
+}
+
+.controls-dark button svg:hover path {
+  fill: var(--fc-lineHover);
+}
+
+.controls-dark .btnClicked {
+  background: var(--bg-clickCardNight);
+  border-radius: 100%;
+  border: 3px solid var(--bg-clickCardNight);
+}
+
+.controls-dark .btnClicked svg path {
+  fill: var(--bg-clean);
+}
+
+.controls .btnClicked svg:hover path {
+  fill: var(--bg-clean);
+}
+
+.cards-dark button {
+  background: var(--bg-cardNight);
+}
+
+.cards-dark button svg path,
+.footer-dark .soundClicked svg path {
+  fill: var(--fc-lineNight);
+}
+
+.cards-dark button:hover svg path {
+  fill: var(--fc-lineHover);
+}
+
+.cards-dark .btnClicked {
+  background: var(--bg-clickCardNight);
+}
+
+.cards-dark .volume-control {
+  background: var(--bg-clean);
+}
+
+.cards-dark .volume-control::-webkit-slider-thumb {
+  background: var(--bg-clean);
+}
+
+.cards-dark button:hover .volume-control {
+  background: var(--fc-lineHover);
+}
+
+.cards-dark button:hover .volume-control::-webkit-slider-thumb {
+  background: var(--fc-lineHover);
+}
+
+.cards-dark .volume-control::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgb(10, 72, 92, 0.2);
+}
+
+.cards-dark .volume-control:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 7px rgb(10, 72, 92, 0.2);
+}
+
+.footer-dark button {
+  background: var(--bg-clickCardNight);
+  border: 5px solid var(--bg-clickCardNight);
+  box-sizing: border-box;
+}
+
+.footer-dark .soundClicked:hover svg path {
+  fill: var(--fc-lineHover);
+}
+
+/* Responsividade */
+@media (max-width: 800px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page {
+    width: 100%;
     height: 100vh;
+    max-height: 66.7rem;
+  }
+
+  .icon-mode {
+    justify-self:end;
+    margin-top: 2rem;
+    margin-right: 0;
+  }
+
+  main {
+    max-width: 29.1rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    animation: none;
+  }
+
+  .display {
+    display: flex;
+    width: 27.1rem;
+  }
+
+  .display .timer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 9rem;
+    line-height: 10rem;
+  }
+
+  .display {
+    max-width: 29.6rem;
+    gap: 3px;
+    animation: topDown 1s;
+  }
+
+  .cards {
+    gap: 1.5rem;
+    justify-content: space-between;
+    animation: downTop 1s 500ms backwards;
+  }
+  
+  .cards button {
+    width: 12.8rem;
+    height: 13.2rem;
+  }
+
+  .cards button svg {
+    padding: 4.5rem 4rem;
     width: 100%;
     height: 100%;
   }
-  .page {
-    height: 100vh;
-    display: grid;
-    padding-bottom: 1rem;
-  }
-  main{
-    max-width: 82.1rem;
 
+  .volume-control {
+    width: 80px;
+    height: 3px;
+    top: 10rem;
   }
 }
