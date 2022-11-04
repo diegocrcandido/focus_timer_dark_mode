@@ -1,10 +1,9 @@
 export default function () {
-  const forest = new Audio("./sounds/Floresta.wav")
-  const rain = new Audio("./sounds/Chuva.wav")
-  const coffeeshop = new Audio("./sounds/Cafeteria.wav")
-  const fireplace = new Audio("./sounds/Lareira.wav")
-  const timerEnd = new Audio("./sounds/audios_kichen-timer.mp3")
-
+  const forest = new Audio('./sounds/Florest.wav')
+  const rain = new Audio('./sounds/Chuva.wav')
+  const coffeeshop = new Audio('./sounds/Cafeteria.wav')
+  const fireplace = new Audio('./sounds/Lareira.wav')
+  const timerEnd = new Audio('./sounds/audios_kichen-timer.mp3')
   coffeeshop.loop = true
   fireplace.loop = true
   forest.loop = true
