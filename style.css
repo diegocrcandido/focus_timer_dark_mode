@@ -6,438 +6,235 @@
 
 :root {
   font-size: 62.5%;
-  /*Light Mode*/
-  --bg-clean: hsl(0, 0%, 100%);
-  --bg-cardClear: hsla(194, 97%, 31%, 0.3);
-  --fc-buttonLight: hsl(0, 0%, 0%);
-  --bg-card: hsl(240, 9%, 89%);
-  --fc-line:hsl(240, 7%, 21%);
-  /*Night Mode*/
-  --fc-lineNight: hsl(240, 7%, 78%);
-  --bg-cardNight:hsl(240, 6%, 17%);
-  --bg-clickCardNight:hsl(195, 74%, 15%);
-  --bg-night:hsl(240, 5%, 7%);
-  --fc-lineHover:hsl(195, 80%, 20%);
+
+  --input-color: #323238;
+  --timer-color: hsla(240, 6%, 21%, 1);
+  --elements-darkmode: #c4c4cc;
+
+  --bg-dark: #121214;
+  --bg-card: #e1e1e6;
+  --bg-card-active: #02799d;
+  --btn-on: hsl(194, 100%, 63%);
+  --inner-card-active: #ffffff;
+
+  --shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  --shadow-darkmode: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.315));
 }
 
 body {
-  background: var(--bg-clean);
-  width: 100%;
-  height: 100%;
-  }
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: calc(100% - 5vh) 1vh;
+
+  background-color: var(--bg-color);
+  transition: background 0.5s linear, color 0.5s linear;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+#theme {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+}
+
+#theme svg {
+  cursor: pointer;
+  filter: var(--shadow);
+}
+
+.dark {
+  background-color: var(--bg-dark);
+}
+
+.dark #timer,
+.dark #controls svg path,
+.dark #theme svg path {
+  color: var(--elements-darkmode);
+  fill: var(--elements-darkmode);
+}
+
+.dark #timer,
+.dark #controls,
+.dark #theme {
+  filter: var(--shadow-darkmode);
+}
+
+.dark #controls .controls-btn:active > svg path {
+  fill: var(--btn-on);
+}
+
+.dark .card {
+  filter: var(--shadow-darkmode);
+}
 
 .page {
-  max-width: 128rem;
-  max-height: 72rem;
-  background: var(--bg-clean);
-  display: grid;
-  padding-bottom: 1rem;
-}
-
-.icon-mode {
   display: flex;
-  justify-self: end;
-  margin-top: 6rem;
-  margin-right: 6rem;
-}
+  margin: auto;
+  padding: 0 2rem;
 
-.icon-mode button {
-  border-radius: 50%;
-  background: transparent;
-  width: 4.4rem;
-  height: 4.4rem;
-}
+  max-width: 82rem;
+  min-width: min(80%, 22rem);
+  min-height: 34rem;
 
-.icon-mode button svg {
-  width: 100%;
-  height: 100%;
-}
-
-.icon-mode button:hover svg path {
-  fill: hsla(240, 6%, 21%, 0.5);
-}
-
-main {
-  width: 82.1rem;
-  margin: 3.3rem auto 6rem;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-}
-
-.display{
-  display: flex;
-  flex-direction: column;
-  gap: 1.7rem;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-}
-
-.controls svg {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 15rem;
 }
 
 .hide {
   display: none;
 }
 
-.timer {
+#timer {
   display: flex;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  font-size: 12.6rem;
-  line-height: 14.8rem;
-  color: var(--fc-line);
-}
+  font-size: clamp(9rem, 10rem + 10vw, 12.67rem);
 
-.cards {
-  display: grid;
-  grid-template-areas: "A B"
-  "C D";
-  gap: 3.2rem;
-}
-
-.cards div:nth-child(1) {
-  grid-area: A;
-}
-
-.cards div:nth-child(2) {
-  grid-area: B;
-}
-
-.cards div:nth-child(3) {
-  grid-area: C;
-}
-
-.cards div:nth-child(4) {
-  grid-area: D;
+  color: var(--timer-color);
+  filter: var(--shadow);
 }
 
 button {
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
-.cards button:hover,
-.icon-mode button:hover {
-  transform: scale(1.1);
+button svg {
+  width: clamp(3.2rem, 2rem + 15vw, 6.4rem);
 }
 
-.controls button {
-  background: none;
-  width: 4.8rem;
-  height: 4.8rem;
+#controls {
+  display: flex;
+  gap: 2rem;
+
+  filter: var(--shadow);
 }
 
-.controls button svg:hover path {
-  fill:hsla(240, 6%, 21%, 0.5);
+.controls-btn:active > svg path {
+  fill: var(--btn-on);
 }
 
-.controls .btnClicked,
-.icon-mode .btnClicked {
-  background: var(--bg-cardClear);
-  border-radius: 100%;
-  border: 3px solid var(--bg-cardClear);
+#wrapper-cards {
+  display: grid;
+  grid-template-areas:
+    'A B'
+    'C D';
+
+  gap: 3.2rem;
 }
 
-.controls .btnClicked svg path,
-.icon-mode .btnClicked svg path {
-  fill: var(--bg-clean);
-}
-
-.controls .btnClicked:hover svg path,
-.icon-mode .btnClicked:hover svg path {
-  fill: hsla(240, 6%, 21%, 0.5);
-}
-
-.cards button {
-  margin: 0;
-  padding: 0;
+.card,
+.forest,
+.rain,
+.coffeeshop,
+.fireplace {
+  position: relative;
   width: 13.8rem;
   height: 15.2rem;
+  background-color: var(--bg-card);
+  filter: var(--shadow);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 3.2rem;
   border-radius: 2.4rem;
-  position: relative;
-  background: var(--bg-card);
+  cursor: pointer;
 }
 
-.cards button svg {
-  padding: 4.8rem 4.7rem;
-  width: 100%;
-  height: 100%;
+.dark .card,
+.dark .forest,
+.dark .rain,
+.dark .coffeeshop,
+.dark .fireplace {
+  opacity: 0.9;
+}
+
+.card-btn,
+.cardForest,
+.cardRain,
+.cardCoffeeshop,
+.cardFireplace {
   position: absolute;
-  right: 0;
-  bottom: 1.5rem;
+  border-radius: 2.4rem 2.4rem 0 0;
+  width: 100%;
+  height: 11rem;
 }
 
-.cards button:hover svg path {
-  fill: hsla(240, 6%, 21%, 0.5);
+.card-active {
+  background-color: var(--bg-card-active);
+  transition: 0.5s;
 }
 
-.cards .btnClicked {
-  background: var(--bg-cardClear);
+.card-active > button svg path:nth-child(1) {
+  fill: var(--inner-card-active);
+  transition: 0.5s;
 }
 
-.cards .btnClicked svg path {
-  fill:var(--bg-clean);
+.card-active > button svg path:nth-child(2) {
+  fill: var(--inner-card-active);
+  transition: 0.5s;
 }
 
-.cards .btnClicked:hover svg path {
-  fill:hsla(240, 6%, 21%, 0.5);
+.card-active input[type='range'],
+.card-active input[type='range']::-webkit-slider-thumb {
+  background: var(--inner-card-active);
+  background-image: var(--inner-card-active);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
-.volume-control {
+input[type='range'] {
   -webkit-appearance: none;
   width: 9rem;
-  height: 0.4rem;
-  border-radius: 5px;
-  background-color: var(--fc-line);
-  position: absolute;
-  left: 2.4rem;
-  right: 2.4rem;
-  top: 11.8rem;
-  cursor: grab;
+  height: 6px;
+  background: var(--input-color);
+  border-radius: 9999px;
+  background-image: linear-gradient(var(--input-color), var(--input-color));
+  position: relative;
+  top: 11.6rem;
+  cursor: pointer;
 }
 
-.volume-control::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 1.6rem;
   height: 1.6rem;
-  background: var(--fc-line);
+  width: 1.6rem;
   border-radius: 50%;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 0 0 0 5px var(--fc-line);
+  background: var(--input-color);
 }
 
-.cards button:hover .volume-control {
-  background: hsla(240, 6%, 21%, 0.5);
+input[type='range']::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
 }
 
-.cards button:hover .volume-control::-webkit-slider-thumb {
-  background: hsla(240, 6%, 21%, 0.5);
-}
-
-.volume-control::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 5px hsla(240, 6%, 21%, 0.5);
-}
-
-.volume-control:active::-webkit-slider-thumb {
-  box-shadow: 0 0 0 7px var(--bg-cardClear);
-  cursor: pointer;
-}
-
-.cards .btnClicked .volume-control {
-  background: hsla(240, 6%, 21%, 1);
-}
-
-.cards .btnClicked:hover .volume-control {
-  background: hsla(240, 6%, 21%, 1);
-}
-
-.cards .btnClicked .volume-control::-webkit-slider-thumb {
-  background: hsla(240, 6%, 21%, 1);
-  box-shadow: 0 0 0 5px var(--fc-line);
-}
-
-.cards .btnClicked:hover .volume-control::-webkit-slider-thumb {
-  background: hsla(240, 6%, 21%, 1);
-}
-
-.cards .btnClicked .volume-control::-webkit-slider-thumb:hover {
-  background: var(--bg-clean);
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1);
-}
-
-.cards .btnClicked:hover .volume-control:active::-webkit-slider-thumb {
-  background: var(--bg-clean);
-  box-shadow: 0 0 0 7px rgb(255, 255, 255, 0.1);
-  cursor: pointer;
-}
-
-/* DARK MODE */
-.body-dark {
-  background: var(--bg-night);
-}
-
-.page-dark {
-  background: var(--bg-night);
-}
-
-.icon-mode-dark button:hover svg path {
-  fill: var(--fc-lineHover);
-}
-
-.icon-mode-dark .btnClicked {
-  background: var(--bg-clickCardNight);
-  border-radius: 100%;
-  border: 3px solid var(--bg-clickCardNight);
-  box-sizing: border-box;
-}
-
-.icon-mode-dark .btnClicked svg path {
-  fill: var(--bg-clean);
-}
-
-.icon-mode-dark .btnClicked:hover svg path {
-  fill: var(--bg-clean);
-}
-
-.timer-dark {
-  color: var(--bg-clean);
-}
-
-.controls-dark button svg path {
-  fill: var(--fc-lineNight);
-}
-
-.controls-dark button svg:hover path {
-  fill: var(--fc-lineHover);
-}
-
-.controls-dark .btnClicked {
-  background: var(--bg-clickCardNight);
-  border-radius: 100%;
-  border: 3px solid var(--bg-clickCardNight);
-}
-
-.controls-dark .btnClicked svg path {
-  fill: var(--bg-clean);
-}
-
-.controls .btnClicked svg:hover path {
-  fill: var(--bg-clean);
-}
-
-.cards-dark button {
-  background: var(--bg-cardNight);
-}
-
-.cards-dark button svg path,
-.footer-dark .soundClicked svg path {
-  fill: var(--fc-lineNight);
-}
-
-.cards-dark button:hover svg path {
-  fill: var(--fc-lineHover);
-}
-
-.cards-dark .btnClicked {
-  background: var(--bg-clickCardNight);
-}
-
-.cards-dark .volume-control {
-  background: var(--bg-clean);
-}
-
-.cards-dark .volume-control::-webkit-slider-thumb {
-  background: var(--bg-clean);
-}
-
-.cards-dark button:hover .volume-control {
-  background: var(--fc-lineHover);
-}
-
-.cards-dark button:hover .volume-control::-webkit-slider-thumb {
-  background: var(--fc-lineHover);
-}
-
-.cards-dark .volume-control::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 5px rgb(10, 72, 92, 0.2);
-}
-
-.cards-dark .volume-control:active::-webkit-slider-thumb {
-  box-shadow: 0 0 0 7px rgb(10, 72, 92, 0.2);
-}
-
-.footer-dark button {
-  background: var(--bg-clickCardNight);
-  border: 5px solid var(--bg-clickCardNight);
-  box-sizing: border-box;
-}
-
-.footer-dark .soundClicked:hover svg path {
-  fill: var(--fc-lineHover);
-}
-
-/* Responsividade */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    position: absolute;
   }
 
   .page {
-    width: 100%;
-    height: 100vh;
-    max-height: 66.7rem;
+    gap: 8rem;
+    padding: 5rem;
   }
 
-  .icon-mode {
-    justify-self:end;
-    margin-top: 2rem;
-    margin-right: 0;
+  #theme {
+    position: fixed;
   }
 
-  main {
-    max-width: 29.1rem;
-    width: 100%;
-    margin: 0 auto;
-    padding: 1rem 1rem 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  #wrapper-cards {
     gap: 2rem;
-    animation: none;
-  }
-
-  .display {
-    display: flex;
-    width: 27.1rem;
-  }
-
-  .display .timer {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font-size: 9rem;
-    line-height: 10rem;
-  }
-
-  .display {
-    max-width: 29.6rem;
-    gap: 3px;
-    animation: topDown 1s;
-  }
-
-  .cards {
-    gap: 1.5rem;
-    justify-content: space-between;
-    animation: downTop 1s 500ms backwards;
-  }
-  
-  .cards button {
-    width: 12.8rem;
-    height: 13.2rem;
-  }
-
-  .cards button svg {
-    padding: 4.5rem 4rem;
-    width: 100%;
-    height: 100%;
-  }
-
-  .volume-control {
-    width: 80px;
-    height: 3px;
-    top: 10rem;
   }
 }
